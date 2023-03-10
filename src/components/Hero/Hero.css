@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;500;600;700&family=Nunito+Sans:ital,wght@0,300;0,400;1,300;1,400&family=Tilt+Warp&display=swap');
+
+.hero {
+    max-width: 100vw;
+    font: Helvetica 1rem;
+}
+
+.landingTitle {
+    font-family: 'Tilt Warp', cursive;
+    font-size: 3rem;
+}
+.landingSubtitle {
+    font-family: 'Nunito Sans', sans-serif;
+    letter-spacing: .1rem;
+    font-size: 1.5rem;
+}

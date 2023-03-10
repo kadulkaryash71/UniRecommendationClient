@@ -1,0 +1,21 @@
+body{
+    background-color: rgb(110, 108, 108);
+}
+
+#bkground{
+    margin-top: 5%;
+}
+.card{
+    padding: 2px ;
+   
+}
+.card-text{
+    font-size: small; font-weight: 500 ; color:gray; text-align: left;
+}
+.card-img-top{
+    width: 10%;
+}
+.row{
+    padding-left: 5%;
+}
+

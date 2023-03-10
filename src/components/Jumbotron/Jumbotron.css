@@ -1,0 +1,13 @@
+.jumbotron {
+    background-color: yellow;
+    font-family: Helvetica, sans-serif;
+}
+
+.heading {
+    font-family: 'Tilt Warp', cursive;
+}
+
+.lead {
+    font-family: 'Mukta', sans-serif;
+    font-weight: 400;
+}
