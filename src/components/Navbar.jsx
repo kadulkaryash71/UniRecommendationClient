@@ -44,7 +44,7 @@ function Navbar() {
     };
 
     return (
-        <AppBar position="fixed" color="primary" sx={{ bgcolor: red[900] }}>
+        <AppBar position="sticky" color="primary" sx={{ bgcolor: red[900] }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <SchoolIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />

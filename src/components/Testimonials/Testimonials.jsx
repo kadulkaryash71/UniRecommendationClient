@@ -49,7 +49,7 @@ function Testimonials() {
                     {/* <i onClick={handleLeftScroll} className="col-md-2 arrow-left"><ArrowCircleLeftIcon /></i> */}
                     {cards.map((card, index) => 
                         <div className="col-lg-6 col-sm-12">
-                            <ActionAreaCard name={card.name} image={card.image} quote={card.quote} />
+                            <ActionAreaCard key={index} name={card.name} image={card.image} quote={card.quote} />
                         </div>
                     )}
                     {/* <i onClick={handleRightScroll} className="col-md-2 arrow-right"><ArrowCircleRightIcon /></i> */}
