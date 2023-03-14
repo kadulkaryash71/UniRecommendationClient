@@ -51,11 +51,11 @@ function Features() {
                     </div>
                 </div>
                 <div className="row justify-content-center">
-                    <div className="col-md-6 col-lg-6 col-12">
-                        {featuresList.map((feature, index) =>
+                    {featuresList.map((feature, index) =>
+                        <div className="col-md-6 col-lg-6 col-12">
                             <HorizontalCard key={index} iconIndex={index} heading={feature.title} desc={feature.description} link={feature.link} />
-                        )}
-                    </div>
+                        </div>
+                    )}
                 </div>
             </div>
         </section>

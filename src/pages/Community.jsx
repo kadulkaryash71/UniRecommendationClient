@@ -12,17 +12,18 @@ function Community() {
 	return (
 		<div className="container-fluid">
 			<div className="row">
-				<h1 className="h1">
+				<h1 className="h1 m-4 text-primary font-weight-bold">
 					URPG-POD
 				</h1>
 			</div>
 			<div className="row my-4">
 				<div className="col-lg-2">
 					Activities
+					(Search universities, courses, people)
 				</div>
 				<div className="col-lg-6 border-md-1 border-left border-right">
+					{/* Playground */}
 					<div className="container d-flex flex-column">
-						Playground
 						<Textbox rows="5" cols="25" styleClasses="m-3 border-4 bg-white text-dark font-weight-semibold border-primary rounded" />
 						<div className="row mx-3 justify-content-end">
 							<Button variant="contained" sx={{ width: "max-content" }}>Post</Button>
@@ -44,6 +45,8 @@ function Community() {
 				</div>
 				<div className="col-lg-4">
 					<div className="row text-left m-3">
+
+						{/* Blog starts */}
 						<div className="col-12 border-2 border-dark rounded-end">
 							<HorizontalCard iconIndex={1} heading="I recently discovered that US..." desc="According to our trusted sources..." />
 						</div>
@@ -53,14 +56,16 @@ function Community() {
 						<div className="col-12">
 							<HorizontalCard iconIndex={1} heading="I recently discovered that US..." desc="According to our trusted sources..." />
 						</div>
+						{/* Blog Ends */}
+
 					</div>
 					<hr />
-					<div className="row text-left m-3">
-						<div className="col-12">Similar people</div>
-						<div className="col">Card</div>
-						<div className="col">Card</div>
-						<div className="col">Card</div>
-						<div className="col">Card</div>
+					<div className="row text-left m-3 bg-light rounded-pill">
+						<div className="col-12 font-weight-bold text-danger h4">Similar people</div>
+						<div className="col my-3">Card</div>
+						<div className="col my-3">Card</div>
+						<div className="col my-3">Card</div>
+						<div className="col my-3">Card</div>
 					</div>
 				</div>
 			</div>
