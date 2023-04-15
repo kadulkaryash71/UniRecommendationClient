@@ -43,7 +43,7 @@ function Features() {
 
 
     return (
-        <section className="service-section px-5 py-5">
+        <section id="features" className="service-section px-5 py-5">
             <div className="container-fluid">
                 <div className="row justify-content-center py-3">
                     <div className="col-md-8 col-12 text-center">

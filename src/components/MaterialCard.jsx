@@ -49,21 +49,21 @@ export default function MaterialCard(props) {
                     </IconButton>
                 }
                 title={props.username}
-                subheader={props.datePublished}
+                subheader={Date().slice(4,21)}
             />
             <CardContent>
                 <Typography variant="body2" color="text.secondary">
                     {props.caption}
                 </Typography>
             </CardContent>
-            <CardMedia
+            {props.media && <CardMedia
                 component="img"
                 // height="194"
                 image={props.media}
                 alt="<IMAGE_ID>"
-            />
+            />}
             <CardActions disableSpacing>
-                <IconButton aria-label="add to favorites">
+                <IconButton aria-label="like">
                     <FavoriteIcon />
                 </IconButton>
                 <IconButton aria-label="share">

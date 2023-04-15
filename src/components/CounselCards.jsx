@@ -8,7 +8,7 @@ function CounselCards(props) {
                     <div className="card-body">
                         <h5 className="card-title">{props.title}</h5>
                         <p className="card-text">{props.note}</p>
-                        <a href="https://leapscholar.com/counsellors" className="btn btn-primary">Start your journey </a>
+                        <a target="_blank" href="https://leapscholar.com/counsellors" className="btn btn-primary">Start your journey </a>
                     </div>
             </div>
         </div>
