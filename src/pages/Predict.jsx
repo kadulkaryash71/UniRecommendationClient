@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import PredictResult from "./PredictResult";
+import PredictResult from "../components/PredictResult";
 
 import TextField from "@mui/material/TextField";
 import Input from "@mui/material/Input";
@@ -56,49 +56,6 @@ function Predict() {
         <main className="text-left">
             {!result ?
                 <form className="m-5" noValidate>
-                    {/* <div class="mb-3">
-                        <label for="" class="form-label" autoFocus>GRE Score</label>
-                        <input type="number" min="0" max="340" class="form-control" name="gre" id="" aria-describedby="helpId" placeholder="" onChange={e => setFormData(prevData => {return {...prevData, "gre": e.target.value}})} />
-                    </div>
-                    <div class="mb-3">
-                        <label for="" class="form-label">TOEFL Score</label>
-                        <input type="number" min="0" max="120" class="form-control" name="toefl" id="" aria-describedby="helpId" placeholder="" onChange={e => setFormData(prevData => {return {...prevData, "english": e.target.value}})} />
-                    </div>
-                    <div class="mb-3">
-                        <label for="" class="form-label">University Rating (Scale: 0-5)</label>
-                        <input type="number" min="0" max="5" class="form-control" name="rating" id="" aria-describedby="helpId" placeholder="" onChange={e => setFormData(prevData => {return {...prevData, "rating": e.target.value}})} />
-                    </div>
-                    <div class="mb-3">
-                        <label for="" class="form-label">LOR grade</label>
-                        <input type="number" step="any" min="0" max="5" class="form-control" name="lor" id="" aria-describedby="helpId" placeholder="" onChange={e => setFormData(prevData => {return {...prevData, "lor": e.target.value}})} />
-                        <small id="helpId" class="form-text text-muted">
-                            Don't know what grade your LOR has? Try <a href="/grading">Grade My LOR</a> to see if your LOR looks good to the Uni
-                        </small>
-                    </div>
-                    <div class="mb-3">
-                        <label for="" class="form-label">SOP grade</label>
-                        <input type="number" step="any" min="0" max="5" class="form-control" name="sop" id="" aria-describedby="helpId" placeholder="" onChange={e => setFormData(prevData => {return {...prevData, "sop": e.target.value}})} />
-                        <small id="helpId" class="form-text text-muted">
-                            Don't know what grade your LOR has? Try <a href="/grading">Grade My SOP</a> to see if your LOR looks good to the Uni
-                        </small>
-                    </div>
-                    <div class="mb-3">
-                        <label for="" class="form-label">CGPA (scale: 10)</label>
-                        <input type="number" step="any" min="0" max="10" class="form-control" name="cgpa" id="" aria-describedby="helpId" placeholder="" onChange={e => setFormData(prevData => {return {...prevData, "cgpa": e.target.value}})} />
-                    </div>
-                    <div class="mb-3" onChange={e => setFormData(prevData => {return {...prevData, "exp": e.target.value}})}>
-                        <label for="exp" class="form-label">Do you have research/work experience?</label>
-                        <br />
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="exp" id="yes" value="1" />
-                            <label class="form-check-label" for="yes">Yes</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="exp" id="no" value="0" />
-                            <label class="form-check-label" for="no">No</label>
-                        </div>
-                    </div> */}
-
                     <div className="container d-flex flex-column" onClick={() => setDataLoaded(true)}>
                         <h2 className="display-5 text-center">
                             We will require some of your preliminary information for predicting your chances
@@ -179,7 +136,6 @@ function Predict() {
                         <Button fullWidth variant="contained" onClick={handleFormSubmit}>Submit</Button>
                     </div>
                 </form>
-
 
                 : <PredictResult prediction={result} />
             }
