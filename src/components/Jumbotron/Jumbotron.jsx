@@ -4,6 +4,7 @@ import "./Jumbotron.css";
 
 import { yellow } from '@mui/material/colors';
 
+// props: heading, text[, moreinfo]
 function Jumbotron(props) {
 	return (
 		<div className="jumbotron" sx={{ bgcolor: yellow[100] }}>

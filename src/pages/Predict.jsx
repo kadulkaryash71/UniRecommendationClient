@@ -100,7 +100,7 @@ function Predict() {
                             </div>
                         </div>
                         <FormControl fullWidth>
-                            <InputLabel id="universityName" helperText="Type any keyword from the university name to find it quickly">University Name</InputLabel>
+                            <InputLabel sx={{ marginTop: "1em" }} id="universityName" helperText="Type any keyword from the university name to find it quickly">University Name</InputLabel>
                             <Select
                                 sx={{ marginTop: "1em" }}
                                 labelId="universityName"

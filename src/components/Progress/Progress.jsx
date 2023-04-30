@@ -41,7 +41,7 @@ function Progress(props) {
             <div className="progress-container">
                 <div id="progress-circle" className="progress-circle" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
                     <span className="p-h"></span><span className="p-f"></span>
-                    <span ref={ref} id="progress">{props.score}</span><span className="sr-only">Complete</span>
+                    <span id="progress">{props.score}</span><span className="sr-only">Complete</span>
                 </div>
             </div>
             <style id="progress-style"></style>

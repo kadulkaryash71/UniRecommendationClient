@@ -1,7 +1,7 @@
 // Bootstrap navbar component:
 // https://mdbootstrap.com/docs/standard/navigation/navbar/#
 import * as React from 'react';
-import Jumbotron from "./Jumbotron/Jumbotron";
+import { Link } from 'react-router-dom';
 
 // Material AppBar component 
 import AppBar from '@mui/material/AppBar';
@@ -12,17 +12,21 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
+// import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
+// import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
 import SchoolIcon from '@mui/icons-material/School';
 import {red} from '@mui/material/colors';
+import ProductsMenu from "./ProductsMenu";
 
-const pages = ['Products', 'About', 'Contact'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const aboutLink = <Link to="/about" ><Typography sx={{ color: {xs: "black", md: "white" }}}>About</Typography></Link>
+const contactLink = <Link to="/contact" ><Typography sx={{ color: {xs: "black", md: "white" }}}>Contact</Typography></Link>
+
+const pages = [<ProductsMenu />, aboutLink, contactLink];
+// const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Navbar() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -92,12 +96,12 @@ function Navbar() {
                             open={Boolean(anchorElNav)}
                             onClose={handleCloseNavMenu}
                             sx={{
-                                display: { xs: 'block', md: 'none' },
+                                display: { xs: 'block', md: 'none' }, color: 'white'
                             }}
                         >
                             {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page}</Typography>
+                                <MenuItem onClick={handleCloseNavMenu}>
+                                    <Typography textAlign="center" sx={{color: 'black'}}>{page}</Typography>
                                 </MenuItem>
                             ))}
                         </Menu>
@@ -125,7 +129,6 @@ function Navbar() {
                         {pages.map((page) => (
                             <Button
                                 key={page}
-                                onClick={handleCloseNavMenu}
                                 sx={{ my: 2, color: 'white', display: 'block' }}
                             >
                                 {page}
@@ -133,7 +136,8 @@ function Navbar() {
                         ))}
                     </Box>
 
-                    <Box sx={{ flexGrow: 0 }}>
+                    {/* User Signed up part */}
+                    {/* <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
@@ -161,7 +165,7 @@ function Navbar() {
                                 </MenuItem>
                             ))}
                         </Menu>
-                    </Box>
+                    </Box> */}
                 </Toolbar>
             </Container>
         </AppBar>
