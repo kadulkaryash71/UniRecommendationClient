@@ -99,8 +99,8 @@ function Navbar() {
                                 display: { xs: 'block', md: 'none' }, color: 'white'
                             }}
                         >
-                            {pages.map((page) => (
-                                <MenuItem onClick={handleCloseNavMenu}>
+                            {pages.map((page, index) => (
+                                <MenuItem key={index} onClick={handleCloseNavMenu}>
                                     <Typography textAlign="center" sx={{color: 'black'}}>{page}</Typography>
                                 </MenuItem>
                             ))}

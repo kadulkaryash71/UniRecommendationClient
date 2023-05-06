@@ -10,7 +10,7 @@ function HorizontalCard(props) {
     // props: heading, desc, link, iconIndex
     return (
         <div className="icon-box">
-            <i className="service-icon">{iconsList[props.iconIndex]}</i>
+            {props.iconIndex && <i className="service-icon">{iconsList[props.iconIndex]}</i>}
             <p className="service-title"><a href={props.link}>{props.heading}</a></p>
             <p className="service-para">{props.desc}</p>
         </div>

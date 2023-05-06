@@ -62,43 +62,22 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 
 function Community() {
 
-	const [people, setPeople] = useState([
-		{
-			image: "https://media.licdn.com/dms/image/D4D03AQFHYZSRWMLhSw/profile-displayphoto-shrink_800_800/0/1633016775234?e=2147483647&v=beta&t=gK0kcJ9eaVGpCzqqRgLyxDF1-yu7NCJUm_QLFWSDVHU",
-			username: "yashkadulkar332",
-			fullName: "Yash Kadulkar",
-			university: "Arizona State University",
-			city: "Phoenix, Arizona"
-		},
-		{
-			image: "https://media.licdn.com/dms/image/C4D03AQE_EjB3KlAASA/profile-displayphoto-shrink_800_800/0/1654377005718?e=2147483647&v=beta&t=fFeB46sDeYQIswRFDOQqXuWI-pbjhmBoQ4527m-fxao",
-			username: "yashkadam404",
-			fullName: "Yash Kadam",
-			university: "Massachusettes Institute of Technology",
-			city: "Massachusettes, Boston"
-		},
-		{
-			image: "https://media.licdn.com/dms/image/C4E03AQErLg3momM1Rg/profile-displayphoto-shrink_800_800/0/1655116470538?e=1687996800&v=beta&t=swHWRw7K8CC0omXfWjpIgz8V-gnCpl5ujlpw6dWkHUg",
-			username: "vishwasm01",
-			fullName: "Vishwas Moolya",
-			university: "University of California San Diego",
-			city: "San Diego, California"
-		},
-	]);
+	const [people, setPeople] = useState([]);
 
 	const [postInput, setPostInput] = useState({
 		userToken: "yashDummy101",
 		caption: "",
-		mediaLink: ""
+		file: ""
 	});
 	const [posts, setPosts] = useState([]);
 
-	function handleChange(e) {
+	const [searchInput, setSearchInput] = useState("");
+	const [searchResults, setSearchResults] = useState([]);
 
+	function handleChange(e) {
 		setPostInput(prevInput => (
 			{ ...prevInput, [e.target.name]: e.target.value }
 		))
-		console.log(postInput);
 	}
 
 	function handlePostSubmit(e) {
@@ -109,10 +88,18 @@ function Community() {
 			method: "POST",
 			mode: "cors",
 			body: JSON.stringify(postInput),
-			headers: {"Content-Type": "application/json"}
+			headers: {
+				"Content-Type": "application/json"
+			}
 		}).then(
 			console.log("Your post has been submitted!")
-		).catch(e => console.log("Some error occurred:", e));
+		)
+			.then(setPostInput({
+				userToken: "yashDummy101",
+				caption: "",
+				file: ""
+			}))
+			.catch(e => console.log("Some error occurred:", e));
 	}
 
 	useEffect(() => {
@@ -132,6 +119,15 @@ function Community() {
 		// }
 	}, [])
 
+	useEffect(() => {
+		if (searchInput.length >= 2) {
+			fetch(`http://localhost:5001/community/${searchInput}`)
+				.then(data => data.json())
+				.then(setSearchResults)
+		}
+		console.log(searchResults);
+	}, [searchInput]);
+
 
 	return (
 		<div className="container-fluid">
@@ -142,7 +138,10 @@ function Community() {
 			</div>
 			<div className="row my-4">
 				<div className="col-lg-2">
-					<Search>
+					<Search
+						onChange={e => setSearchInput(e.target.value)}
+						value={searchInput}
+					>
 						<SearchIconWrapper>
 							<SearchIcon />
 						</SearchIconWrapper>
@@ -151,25 +150,52 @@ function Community() {
 							inputProps={{ 'aria-label': 'search' }}
 						/>
 					</Search>
+
+					{searchResults !== undefined ?
+						searchResults.map(result => (
+							<div className="bg-dark my-2 text-white border-4 rounded p-1">
+								<HorizontalCard heading={result.userToken} desc={result.caption} />
+							</div>))
+						: null
+					}
 				</div>
 				<div className="col-lg-6 border-md-1 border-left border-right">
 					{/* Playground */}
 					<div className="d-flex flex-column m-3">
-						<form className="d-flex flex-column" onSubmit={handlePostSubmit} action="http://localhost:5001/community/post" method="post">
+						<form
+							onSubmit={handlePostSubmit}
+							className="d-flex flex-column"
+						>
 							<TextField
 								onChange={handleChange}
 								value={postInput.caption}
 								name="caption"
 								multiline
+								placeholder="Share your thoughts..."
 							/>
-							<Input color="primary" name="image" type="file" variant="filled" />
+							<Input
+								color="primary"
+								name="image"
+								type="file"
+								variant="filled"
+								onChange={e => {
+									var reader = new FileReader();
+									reader.readAsDataURL(e.target.files[0]);
+									reader.onload = () => {
+										setPostInput(prevInput => (
+											{ ...prevInput, "file": reader.result }
+										))
+									}
+								}}
+							/>
 							<div className="row mx-3 justify-content-end">
 								<Button variant="contained" type="submit" sx={{ width: "max-content" }}>Post</Button>
 							</div>
 						</form>
 
 						{/* Content start */}
-						<div className="row m-3 justify-content-center">
+
+						{/* <div className="row m-3 justify-content-center">
 							<MaterialCard username="yash@123" datePublished="28 February, 2023" caption="Finally landed. Bon voyage to an adventure." media="https://images.pexels.com/photos/358220/pexels-photo-358220.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
 						</div>
 						<div className="row m-3 justify-content-center">
@@ -177,10 +203,10 @@ function Community() {
 						</div>
 						<div className="row m-3 justify-content-center">
 							<MaterialCard username="yash@123" datePublished="28 February, 2023" caption="Finally landed. Bon voyage to an adventure." media="https://images.pexels.com/photos/1002175/pexels-photo-1002175.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
-						</div>
-						{posts.map((post, index) => {
-							return <div key={index} className="row m-3 justify-content-center">
-								<MaterialCard username={post.userToken} datePublished={post.postedAt} caption={post.caption} media={post.mediaLink} />
+						</div> */}
+						{posts.map((post) => {
+							return <div key={post._id} className="row m-3 justify-content-center">
+								<MaterialCard username={post.userToken} datePublished={post.postedAt} caption={post.caption} media={post.file} />
 							</div>
 						})}
 						{/* Content end */}
@@ -191,13 +217,13 @@ function Community() {
 					<div className="row text-left m-3">
 						<Typography variant="h4" component="h4" color="primary" mx={1}>Recent Blogs</Typography>
 						{/* Blog starts */}
-						<div className="col-12 border-2 border-dark rounded-end">
+						<div className="service-section col-12 p-0">
 							<HorizontalCard iconIndex={1} heading="I recently discovered that US..." desc="According to our trusted sources..." />
 						</div>
-						<div className="col-12">
+						<div className="service-section col-12 p-0">
 							<HorizontalCard iconIndex={2} heading="I recently discovered that US..." desc="According to our trusted sources..." />
 						</div>
-						<div className="col-12">
+						<div className="service-section col-12 p-0">
 							<HorizontalCard iconIndex={3} heading="I recently discovered that US..." desc="According to our trusted sources..." />
 						</div>
 						{/* Blog Ends */}
@@ -209,6 +235,7 @@ function Community() {
 						{people.map(person => (
 							<div className="col-sm-4 col-md-12 my-2">
 								<ContactCard
+									key={person._id}
 									contactImage={person.image}
 									username={person.username}
 									fullName={person.fullName}
